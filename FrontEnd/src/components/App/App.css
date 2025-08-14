@@ -1,0 +1,64 @@
+.app-container {
+  background-color: #000;
+  color: #fff;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.results-section {
+  padding: 20px;
+}
+
+.no-results-text {
+  text-align: center;
+  font-size: 18px;
+  opacity: 0.6;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.game-card {
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 0 10px #00ff66;
+  transition: transform 0.2s;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+}
+
+.game-thumb {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.game-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.game-price {
+  margin-top: 8px;
+}
+
+.sale-price {
+  color: #00ff66;
+  font-weight: bold;
+}
+
+.normal-price {
+  color: #888;
+  margin-left: 5px;
+}

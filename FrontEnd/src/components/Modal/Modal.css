@@ -1,0 +1,265 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0000004d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* visibility: hidden; */
+}
+.modal__opened {
+  visibility: visible;
+}
+
+.modal__title {
+  margin: 0;
+  font-size: 16px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  background-image: url(../../assets/closeBtn.svg);
+  height: 20px;
+  width: 20px;
+  border: none;
+  color: black;
+  background-color: transparent;
+  cursor: pointer;
+}
+.modal__close-grey {
+  position: absolute;
+  background-image: url(../../assets/closeBtnGrey.svg);
+  height: 16px;
+  width: 16px;
+  top: 20px;
+  right: 28px;
+  border: none;
+  color: #000000;
+  background-color: transparent;
+  cursor: pointer;
+}
+.modal__submit {
+  border: none;
+  width: 124px;
+  height: 36px;
+  gap: 20px;
+  background-color: lightgray;
+  color: white;
+  top: 557px;
+  left: 500px;
+  font-weight: 700;
+  line-height: 20px;
+  margin-top: 32px;
+  border-radius: 5px;
+}
+
+.modal__content {
+  background-color: #fff;
+  position: relative;
+  padding: 28px 28px 36px;
+  max-width: 496px;
+
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 10px;
+  margin: auto;
+}
+
+.modal__content_type_image {
+  padding: 0;
+
+  overflow: hidden;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__input {
+  margin: auto;
+  display: block;
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 17px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #000000;
+}
+
+.modal__radio-input {
+  /* padding-top: 0px;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center; */
+}
+
+.modal__radio-buttons {
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 5px;
+
+  /* align-items: center; */
+}
+
+.modal__legend {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 16px;
+  padding-top: 24px;
+}
+.modal__label_type_radio {
+  padding-top: 0px;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.modal__image {
+  object-fit: cover;
+  /* top: 106px;
+  left: 471px; */
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+.modal__caption {
+  margin: 0px;
+  padding: 0px;
+}
+
+.modal__weather {
+  padding: 0px;
+  margin: 0px;
+}
+
+.modal__footer {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 24px 32px 32px 32px;
+}
+
+.modal__footer-column {
+  flex-direction: column;
+  display: flex;
+  gap: 12px;
+}
+.modal__delete-button {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #ff4d00;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.modal__content_content_confirmation {
+  width: 670px;
+  height: 280px;
+  /* top: 271px; */
+  /* left: 385px; */
+  background-color: #fff;
+  position: relative;
+  padding: 60px 60px 60px;
+  max-width: 496px;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 10px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal__confirmation-delete {
+  border: none;
+  background: transparent;
+  padding: 0px;
+  color: #ff4d00;
+  font-size: 20px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.modal__confirmation-cancel {
+  margin-top: 26px;
+  border: none;
+  background: transparent;
+  padding: 0px;
+  line-height: 24px;
+  font-size: 20px;
+  cursor: pointer;
+  text-decoration: solid;
+}
+
+.modal__confirmation-title {
+  text-align: center;
+}
+
+.modal__button-container {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.modal__submit,
+.modal__button {
+  width: 124px; /* Making both buttons the same width */
+  height: 36px; /* Making both buttons the same height */
+  border: none;
+  border-radius: 5px;
+  font-weight: 700;
+  line-height: 20px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer; /* Shows hand cursor on hover */
+  padding: 0;
+}
+
+.modal__submit {
+  background-color: lightgray;
+  color: white;
+}
+
+.modal__submit:hover {
+  background-color: #4b4b4b; /* darker shade for primary button */
+  transform: scale(1.02);
+}
+
+.modal__button:hover {
+  background-color: #f5f5f5; /* lighter shade for secondary button */
+  transform: scale(1.02);
+}
+
+.modal__submit:hover,
+.modal__button:hover {
+  background-color: black;
+  color: white;
+  transform: scale(1.02); /* Slight grow effect */
+}
+.modal__close_color_grey {
+  background-image: url(../../assets/greyXbtn.svg);
+  background-repeat: no-repeat;
+}
