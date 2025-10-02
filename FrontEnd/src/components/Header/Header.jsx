@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import "./Header.css";
+import { Link } from "react-router-dom";
 
-const Header = ({ onSearch }) => {
+import BackButton from "../BackButton/BackButton";
+
+const Header = ({ onSearch, page }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = () => {
@@ -16,7 +20,8 @@ const Header = ({ onSearch }) => {
   };
 
   return (
-    <header className="header-container">
+    <header className="header">
+      {page === "deals" ? <BackButton /> : ""}
       <h1 className="logo-text">🎮 Game Deal Finder</h1>
 
       <div className="search-bar">
@@ -28,9 +33,9 @@ const Header = ({ onSearch }) => {
           onKeyDown={handleKeyDown}
           className="search-input"
         />
-        <button onClick={handleSearch} className="search-button">
+        <Link to="/deals" onClick={handleSearch} className="search-button">
           Search
-        </button>
+        </Link>
       </div>
     </header>
   );

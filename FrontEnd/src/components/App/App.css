@@ -5,6 +5,11 @@
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
 }
 
 .results-section {
@@ -18,9 +23,11 @@
 }
 
 .game-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
 }
 
 .game-card {

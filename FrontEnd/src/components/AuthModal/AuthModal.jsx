@@ -36,12 +36,13 @@ const AuthModal = ({
   };
 
   return (
-    <div className="modal-backdrop">
-      <div className="modal-content">
+    <div className="modal">
+      <div className="modal__content">
+        <button onClick={onClose}>X</button>
         <h2>{isSignup ? "Sign Up" : "Log In"}</h2>
         {message && <p style={{ color: "red" }}>{message}</p>}
 
-        <form onSubmit={handleSubmit}>
+        <form className="modal__form" onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="Email"
@@ -56,10 +57,17 @@ const AuthModal = ({
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit">{isSignup ? "Register" : "Login"}</button>
+          <div className="modal__button-container">
+            <button type="submit">{isSignup ? "Register" : "Login"}</button>{" "}
+            <p className="modal__content">
+              or{" "}
+              <button className="modal__button-nav">
+                {isSignup ? "Login" : "Register"}
+              </button>{" "}
+              to get personalized deals.
+            </p>
+          </div>
         </form>
-
-        <button onClick={onClose}>Close</button>
       </div>
     </div>
   );

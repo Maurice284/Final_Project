@@ -1,35 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../components/Header/Header";
-import Preloader from "../components/Preloader/Preloader";
-import "./pages.css";
+import { useNavigate } from "react-router-dom";
+import BackButton from "../components/BackButton/BackButton";
 
-const HomePage = ({ fetchDeals, isLoading, games, dealLookUp, page }) => {
+const DealsPage = ({ fetchDeals, isLoading, games, dealLookUp, page }) => {
+  const navigate = useNavigate();
   return (
-    <div className="page" style={{ padding: "20px" }}>
+    <>
       <Header onSearch={fetchDeals} page={page} />
       <main className="results-section">
         {isLoading ? (
           <Preloader />
+        ) : games.length === 0 ? (
+          <p className="no-results-text">No results yet. Try searching!</p>
         ) : (
           <div>
             <ul className="game-grid">
               {games.map((game) => (
                 <li
-                  key={game.info.gameID}
+                  key={game.dealID}
                   className="game-card"
                   onClick={() => {
                     dealLookUp(game.dealID);
                   }}
                 >
                   <img
-                    src={game.info.thumb}
-                    alt={game.info.title}
+                    src={game.thumb}
+                    alt={game.title}
                     className="game-thumb"
                   />
-                  <h2 className="game-title">{game.info.title}</h2>
+                  <h2 className="game-title">{game.title}</h2>
                   <p className="game-price">
-                    <span className="sale-price">${game.info.salePrice}</span>{" "}
-                    <del className="normal-price">${game.info.normalPrice}</del>
+                    <span className="sale-price">${game.salePrice}</span>{" "}
+                    <del className="normal-price">${game.normalPrice}</del>
                   </p>
                 </li>
               ))}
@@ -37,8 +40,8 @@ const HomePage = ({ fetchDeals, isLoading, games, dealLookUp, page }) => {
           </div>
         )}
       </main>
-    </div>
+    </>
   );
 };
 
-export default HomePage;
+export default DealsPage;

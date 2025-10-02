@@ -1,19 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import Modal from "../Modal/Modal.jsx";
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import Preloader from "../Preloader/Preloader.jsx";
 import AuthModal from "../AuthModal/AuthModal.jsx";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, data } from "react-router-dom";
 import HomePage from "../../pages/HomePage.jsx";
-import ProfilePage from "../../pages/ProfilePage";
-import { login, saveGame } from "../../utils/api.js";
+import DealsPage from "../../pages/DealsPage";
+import api from "../../utils/api.js";
+//import { login, saveGame } from "../../utils/api.js";
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [dealDetails, setDealDetails] = useState(null); // ⬅ stores detailed deal info
   const [showModal, setShowModal] = useState(false); // ⬅ controls modal
+  const [isLoading, setIsLoading] = useState(false);
+  const [games, setGames] = useState([]);
+  const [initialGames, setInitialGames] = useState([]);
+  const [page, setpage] = useState("home");
 
   /**
    * todo: use setDealDetails after the fetch request
@@ -22,9 +27,36 @@ const App = () => {
    *  show the dealDetails in the modal using whatever HTML tags
    */
 
-  // ✅ New Auth-related state
-  const [user, setUser] = useState(null);
-  const [showSignup, setShowSignup] = useState(false);
+  const fetchDeals = async (query) => {
+    try {
+      setIsLoading(true);
+      api.getDeals(query).then((data) => {
+        console.log(data);
+        setGames(data);
+      });
+    } catch (error) {
+      console.error("Error fetching deals:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const dealLookUp = async (dealID) => {
+    console.log("dealLookUp called with dealID:", dealID);
+    try {
+      setIsLoading(true);
+      api.getDealDetails(dealID).then((data) => {
+        console.log("API response data:", data);
+        setDealDetails(data);
+        setShowModal(true);
+      });
+    } catch (error) {
+      console.error("Error fetching specific deal", error);
+    } finally {
+      setIsLoading(false);
+      setpage("deals");
+    }
+  };
 
   function handleLoginSubmit(email, password) {
     login(email, password).then((data) => {
@@ -40,54 +72,38 @@ const App = () => {
     });
   }
 
+  useEffect(() => {
+    api
+      .getInitalGames()
+      .then((items) => {
+        setInitialGames(items.reverse());
+        console.log(items);
+      })
+      .catch(console.error);
+  }, []);
+
   return (
     <div className="app-container">
       <Routes>
         <Route
           path="/"
           element={
-            <HomePage
-              user={user}
-              onClickLogin={() => setShowLogin(true)}
-              setDealDetails={setDealDetails}
-              setShowModal={setShowModal}
+            <HomePage isLoading={isLoading} games={initialGames} page={page} />
+          }
+        />
+        <Route
+          path="/deals"
+          element={
+            <DealsPage
+              isLoading={isLoading}
+              fetchDeals={fetchDeals}
+              games={games}
+              dealLookUp={dealLookUp}
+              page={page}
             />
           }
         />
-        <Route path="/profile" element={<ProfilePage user={user} />} />
       </Routes>
-
-      {showModal && dealDetails && (
-        <Modal
-          details={dealDetails}
-          onClose={() => setShowModal(false)}
-          saveGame={handleSaveGame}
-        />
-      )}
-
-      {/* Auth modals */}
-      {showSignup && (
-        <AuthModal
-          type="signup"
-          onClose={() => setShowSignup(false)}
-          onSuccess={(data) => {
-            setUser(data.user); // ⬅ Update user state after backend response
-            setShowSignup(false);
-          }}
-        />
-      )}
-
-      {showLogin && (
-        <AuthModal
-          type="login"
-          onClose={() => setShowLogin(false)}
-          onSuccess={(data) => {
-            setUser(data.user);
-            setShowLogin(false);
-          }}
-          onLoginSubmit={handleLoginSubmit}
-        />
-      )}
     </div>
   );
 };
