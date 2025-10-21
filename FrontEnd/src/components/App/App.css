@@ -16,7 +16,7 @@
   padding: 20px;
 }
 
-.no-results-text {
+.results-section__no-results-text {
   text-align: center;
   font-size: 18px;
   opacity: 0.6;
@@ -43,29 +43,29 @@
   transform: translateY(-5px);
 }
 
-.game-thumb {
+.game-card__thumbnail {
   width: 100%;
   height: 160px;
   object-fit: cover;
   border-radius: 8px;
 }
 
-.game-title {
+.game-card__title {
   font-size: 16px;
   font-weight: bold;
   margin-top: 10px;
 }
 
-.game-price {
+.game-card__price {
   margin-top: 8px;
 }
 
-.sale-price {
+.game-card__sale-price {
   color: #00ff66;
   font-weight: bold;
 }
 
-.normal-price {
+.game-card__normal-price {
   color: #888;
   margin-left: 5px;
 }

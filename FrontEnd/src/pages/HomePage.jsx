@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import Preloader from "../components/Preloader/Preloader";
 import "./pages.css";
+import Footer from "../components/Footer/Footer";
 
 const HomePage = ({ fetchDeals, isLoading, games, dealLookUp, page }) => {
+  console.log(dealLookUp);
   return (
     <div className="page" style={{ padding: "20px" }}>
       <Header onSearch={fetchDeals} page={page} />
@@ -15,21 +17,25 @@ const HomePage = ({ fetchDeals, isLoading, games, dealLookUp, page }) => {
             <ul className="game-grid">
               {games.map((game) => (
                 <li
-                  key={game.info.gameID}
+                  key={`${game.gameID}-${game.dealID}`}
                   className="game-card"
                   onClick={() => {
                     dealLookUp(game.dealID);
                   }}
                 >
                   <img
-                    src={game.info.thumb}
-                    alt={game.info.title}
-                    className="game-thumb"
+                    src={game.thumb}
+                    alt={game.title}
+                    className="game-card__thumbnail"
                   />
-                  <h2 className="game-title">{game.info.title}</h2>
-                  <p className="game-price">
-                    <span className="sale-price">${game.info.salePrice}</span>{" "}
-                    <del className="normal-price">${game.info.normalPrice}</del>
+                  <h2 className="game-card__title">{game.title}</h2>
+                  <p className="game-card__price">
+                    <span className="game-card__sale-price">
+                      {game.salePrice}
+                    </span>{" "}
+                    <del className="game-card__normal-price">
+                      {game.normalPrice}
+                    </del>
                   </p>
                 </li>
               ))}

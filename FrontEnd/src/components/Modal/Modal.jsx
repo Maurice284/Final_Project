@@ -9,6 +9,7 @@ const Modal = ({ details, onClose, saveGame }) => {
   function handleSaveClick() {
     setIsSaved(!isSaved);
   }
+
   if (!details || !details.gameInfo) return null;
 
   // Destructure the needed data from 'details'
@@ -25,7 +26,9 @@ const Modal = ({ details, onClose, saveGame }) => {
         </button>
 
         {/* Game information */}
-        <h2 className="modal__title">{gameInfo.name}</h2>
+        <p>
+          <h2 className="modal__title">{gameInfo.name}</h2>
+        </p>
 
         {/* Game thumbnail */}
         <img
@@ -40,24 +43,28 @@ const Modal = ({ details, onClose, saveGame }) => {
             <p>
               <strong>Retail Price:</strong> ${gameInfo.retailPrice}
             </p>
-            <p>
+            {/* <p>
               <strong>Cheapest Ever:</strong> ${cheapestPrice.price}
+            </p> */}
+            <p>
+              {" "}
+              <strong>Sale Price:</strong> ${gameInfo.salePrice}
             </p>
           </div>
 
           {/* Link to live deal */}
-          <a
+          {/* <a
             href={`https://www.cheapshark.com/redirect?dealID=${details.dealID}`}
             target="_blank"
             rel="noopener noreferrer"
             className="deal__link"
           >
             🔗 View Live Deal
-          </a>
+          </a> */}
         </div>
-        <button onClick={handleSaveClick}>
+        {/* <button onClick={handleSaveClick}>
           {isSaved ? "Saved!" : "Save Game"}
-        </button>
+        </button> */}
       </div>
     </div>
   );

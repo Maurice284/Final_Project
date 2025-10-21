@@ -13,12 +13,14 @@ export const getDeals = (query) => {
 // `https://www.cheapshark.com/api/1.0/deals?id=${dealID}`
 
 export const getInitalGames = () => {
-  return fetch(
-    `${BASE_URL}/games?ids=1,2,3,4,5,6,7,8,9,10,11,12&format=array`
-  ).then(handleServerResponse);
+  return fetch(`${BASE_URL}/deals?onSale=1&sortBy=Metacritic&storeID=1,7`).then(
+    handleServerResponse
+  );
 };
+//  `${BASE_URL}/games?ids=1,2,3,4,5,6,7,8,9,10,11,12&format=array`
+//https://www.cheapshark.com/api/1.0/deals?onSale=50
 
-export const getDealDetails = () => {
+export const getDealDetails = (dealID) => {
   return fetch(`${BASE_URL}/deals?id=${dealID}`).then(handleServerResponse);
 };
 // this call will populate homepage games. feel free to write a randomize numbers function to mix things up

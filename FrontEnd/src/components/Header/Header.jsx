@@ -7,10 +7,10 @@ import BackButton from "../BackButton/BackButton";
 const Header = ({ onSearch, page }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     const trimmed = searchTerm.trim();
     if (trimmed) {
-      onSearch(trimmed);
+      await onSearch(trimmed);
       setSearchTerm("");
     }
   };
@@ -21,9 +21,14 @@ const Header = ({ onSearch, page }) => {
 
   return (
     <header className="header">
+      {/* <video autoPlay loop muted className="header-video">
+        <source src="/path-to-your-video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video> */}
       {page === "deals" ? <BackButton /> : ""}
-      <h1 className="logo-text">🎮 Game Deal Finder</h1>
-
+      <div className="header__logo-text-container">
+        <h1 className="header__logo-text">🎮 Game Deal Finder</h1>
+      </div>
       <div className="search-bar">
         <input
           type="text"

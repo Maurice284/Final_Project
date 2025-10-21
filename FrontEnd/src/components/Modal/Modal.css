@@ -79,7 +79,7 @@
 }
 
 .modal__content {
-  background-color: #fff;
+  background-color: #e3e0dae7;
   position: relative;
   padding: 28px 28px 36px;
   max-width: 496px;
@@ -183,6 +183,7 @@
   flex-direction: column;
   display: flex;
   gap: 12px;
+  color: red;
 }
 .modal__delete-button {
   font-weight: 700;

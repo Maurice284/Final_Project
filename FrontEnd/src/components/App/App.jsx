@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Routes, Route, data } from "react-router-dom";
 import HomePage from "../../pages/HomePage.jsx";
 import DealsPage from "../../pages/DealsPage";
 import api from "../../utils/api.js";
+import { storeNameMap } from "../../utils/constants.js";
+import Footer from "../Footer/Footer.jsx";
 //import { login, saveGame } from "../../utils/api.js";
 
 const App = () => {
@@ -19,6 +21,7 @@ const App = () => {
   const [games, setGames] = useState([]);
   const [initialGames, setInitialGames] = useState([]);
   const [page, setpage] = useState("home");
+  // create a state variable that holds the game (an object) that you most recently clicked on
 
   /**
    * todo: use setDealDetails after the fetch request
@@ -32,7 +35,15 @@ const App = () => {
       setIsLoading(true);
       api.getDeals(query).then((data) => {
         console.log(data);
-        setGames(data);
+        // loop through data(an array), and for each object inside that data array, we add a new key value pair for the store name
+        const updatedGames = data.map((game) => {
+          const updatedGame = {
+            ...game,
+            storeName: storeNameMap[game.storeID],
+          };
+          return updatedGame;
+        });
+        setGames(updatedGames);
       });
     } catch (error) {
       console.error("Error fetching deals:", error);
@@ -42,6 +53,8 @@ const App = () => {
   };
 
   const dealLookUp = async (dealID) => {
+    //handleGameCardClick
+
     console.log("dealLookUp called with dealID:", dealID);
     try {
       setIsLoading(true);
@@ -66,6 +79,11 @@ const App = () => {
     });
   }
 
+  function closeModal() {
+    console.log("closes modal");
+    setShowModal(false); // closes the modal
+  }
+
   function handleSaveGame() {
     saveGame(details).then(() => {
       // when there's a backend, update our list of saved games
@@ -76,7 +94,7 @@ const App = () => {
     api
       .getInitalGames()
       .then((items) => {
-        setInitialGames(items.reverse());
+        setInitialGames(items);
         console.log(items);
       })
       .catch(console.error);
@@ -88,7 +106,12 @@ const App = () => {
         <Route
           path="/"
           element={
-            <HomePage isLoading={isLoading} games={initialGames} page={page} />
+            <HomePage
+              isLoading={isLoading}
+              games={initialGames}
+              page={page}
+              dealLookUp={dealLookUp}
+            />
           }
         />
         <Route
@@ -99,11 +122,13 @@ const App = () => {
               fetchDeals={fetchDeals}
               games={games}
               dealLookUp={dealLookUp}
-              page={page}
+              page="deals"
             />
           }
         />
       </Routes>
+      {showModal && <Modal details={dealDetails} onClose={closeModal} />}
+      <Footer></Footer>
     </div>
   );
 };
