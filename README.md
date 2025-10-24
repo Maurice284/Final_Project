@@ -1,12 +1,31 @@
-# React + Vite
+# 🎮 Final Project — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the **frontend** portion of the Final Project, built with **React.js**.  
+It provides the user interface for browsing, viewing, and managing game deals fetched from a public API.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live site:https://maurice284.github.io/Final_Project/
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔍 **Search Deals:** Users can search for games and view discounted prices.
+- 🧩 **Dynamic Game Cards:** Displays game details such as title, store name, and pricing.
+- 💬 **Modal Popups:** Shows detailed deal information when a user clicks on a game.
+- ⚙️ **Routing:** Handles navigation between the Home and Deals pages using React Router.
+- ⏳ **Loading State:** Displays a preloader while data is being fetched.
+- 🧱 **Component-Based:** Modular structure for easy maintenance and scalability.
+
+---
+
+## 🛠️ Tech Stack
+
+- **React.js**
+- **React Router**
+- **CSS (custom + component styling)**
+- **JavaScript (ES6+)**
+- **Fetch / Axios API requests**
+
+---
+
+## 📂 Project Structure
