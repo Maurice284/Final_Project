@@ -111,6 +111,7 @@ const App = () => {
               games={initialGames}
               page={page}
               dealLookUp={dealLookUp}
+              fetchDeals={fetchDeals}
             />
           }
         />

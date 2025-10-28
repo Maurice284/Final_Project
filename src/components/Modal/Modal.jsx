@@ -26,9 +26,8 @@ const Modal = ({ details, onClose, saveGame }) => {
         </button>
 
         {/* Game information */}
-        <p>
-          <h2 className="modal__title">{gameInfo.name}</h2>
-        </p>
+
+        <h2 className="modal__title">{gameInfo.name}</h2>
 
         {/* Game thumbnail */}
         <img
